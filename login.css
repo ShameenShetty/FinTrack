@@ -1,0 +1,332 @@
+/* --- Global Variables --- */
+:root {
+    --bg-dark: #0b0f1a;
+    --bg-gradient: linear-gradient(135deg, #0b0f1a 0%, #141c2b 100%);
+    --primary-purple: #7c83ff;
+    --primary-hover: #5a5fff;
+    --text-white: #ffffff;
+    --text-gray: #a0aec0;
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-white);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #7c83ff, #00f2ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- Navbar --- */
+.navbar {
+    height: 80px;
+    background: rgba(11, 15, 26, 0.95);
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--text-white);
+}
+
+.logo-box {
+    background: var(--primary-purple);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 1.2rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-gray);
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+    color: var(--primary-purple);
+}
+
+.nav-auth {
+    display: flex;
+    gap: 15px;
+}
+
+/* --- Buttons --- */
+.btn {
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.btn-primary {
+    background: var(--primary-purple);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(124, 131, 255, 0.3);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 1px solid var(--primary-purple);
+    color: var(--primary-purple);
+}
+
+.btn-outline:hover {
+    background: rgba(124, 131, 255, 0.1);
+}
+
+.btn-block {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+}
+
+/* --- Login Section --- */
+.login-wrapper {
+    padding-top: 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.split-container {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* --- Glass Card --- */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 50px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
+}
+
+.glass-card:hover {
+    border-color: rgba(124, 131, 255, 0.3);
+}
+
+.card-header {
+    margin-bottom: 35px;
+}
+
+.card-header h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.card-header p {
+    color: var(--text-gray);
+}
+
+/* --- Form Elements --- */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+.input-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-field i:not(.toggle-password) {
+    position: absolute;
+    left: 15px;
+    color: var(--primary-purple);
+}
+
+.input-field input {
+    width: 100%;
+    padding: 14px 15px 14px 45px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: white;
+    outline: none;
+    transition: var(--transition);
+}
+
+.input-field input:focus {
+    border-color: var(--primary-purple);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 10px rgba(124, 131, 255, 0.2);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    color: var(--text-gray);
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 0.85rem;
+}
+
+.forgot-link {
+    color: var(--primary-purple);
+    text-decoration: none;
+}
+
+.card-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+}
+
+.card-footer a {
+    color: var(--primary-purple);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* --- Info Side --- */
+.info-side {
+    padding-left: 20px;
+}
+
+.illustration-box {
+    width: 80px;
+    height: 80px;
+    background: rgba(124, 131, 255, 0.1);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.illustration-box i {
+    font-size: 2.5rem;
+    color: var(--primary-purple);
+}
+
+.info-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.info-content p {
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.trust-badges {
+    display: flex;
+    gap: 20px;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid var(--glass-border);
+}
+
+.badge i {
+    color: #00f2ff;
+}
+
+/* --- Responsive --- */
+@media (max-width: 992px) {
+    .split-container {
+        grid-template-columns: 1fr;
+    }
+    .info-side {
+        display: none;
+    }
+    .glass-card {
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    .nav-links {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .glass-card {
+        padding: 30px 20px;
+    }
+    .card-header h2 {
+        font-size: 1.6rem;
+    }
+}

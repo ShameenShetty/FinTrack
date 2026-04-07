@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | FinTrack - Future of FinTech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="registration.css">
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function App() {
+            const [showPass, setShowPass] = useState(false);
+            const [error, setError] = useState('');
+            const [loading, setLoading] = useState(false);
+            const [formData, setFormData] = useState({
+                fullName: '',
+                email: '',
+                password: '',
+                confirmPassword: '',
+                accountType: 'individual'
+            });
+
+            function handleChange(e) {
+                setFormData({ ...formData, [e.target.name]: e.target.value });
+            }
+
+            async function handleSubmit(e) {
+                e.preventDefault();
+                setError('');
+
+                if (formData.password !== formData.confirmPassword) {
+                    setError('Passwords do not match');
+                    return;
+                }
+
+                setLoading(true);
+                try {
+                    const res = await fetch('/api/auth/register', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            full_name: formData.fullName,
+                            email: formData.email,
+                            password: formData.password,
+                            account_type: formData.accountType,
+                        })
+                    });
+
+                    const data = await res.json();
+
+                    if (res.ok) {
+                        window.location.href = 'login.html';
+                    } else {
+                        setError(data.message || 'Registration failed');
+                    }
+                } catch (err) {
+                    console.error(err);
+                    setError('Could not reach the server. Please try again.');
+                } finally {
+                    setLoading(false);
+                }
+            }
+
+            return (
+                <div className="page-wrapper">
+                    <nav className="navbar">
+                        <div className="container nav-container">
+                            <a href="index.html" className="logo">
+                                <div className="logo-box">ET</div>
+                                <span>FinTrack</span>
+                            </a>
+                            <ul className="nav-links">
+                                <li><a href="index.html#home">Home</a></li>
+                                <li><a href="index.html#features">Features</a></li>
+                                <li><a href="index.html#about">About</a></li>
+                                <li><a href="index.html#tech-stack">Technology</a></li>
+                            </ul>
+                            <div className="nav-auth">
+                                <a href="login.html" className="btn-link">Login</a>
+                                <a href="registration.html" className="btn btn-primary active">Register</a>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <main className="registration-main">
+                        <div className="container split-layout">
+
+                            <div className="form-side">
+                                <div className="glass-card">
+                                    <div className="card-header">
+                                        <h2>Create Account</h2>
+                                        <p>Join the elite FinTech ecosystem</p>
+                                    </div>
+
+                                    <form className="reg-form" onSubmit={handleSubmit}>
+
+                                        {error && <p style={{ color: 'red', marginBottom: '1rem' }}>{error}</p>}
+
+                                        <div className="input-group">
+                                            <label>Full Name</label>
+                                            <div className="input-wrapper">
+                                                <i className="fas fa-user"></i>
+                                                <input
+                                                    type="text"
+                                                    name="fullName"
+                                                    placeholder="Enter your name"
+                                                    value={formData.fullName}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="input-group">
+                                            <label>Email Address</label>
+                                            <div className="input-wrapper">
+                                                <i className="fas fa-envelope"></i>
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    placeholder="name@fintrack.com"
+                                                    value={formData.email}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="form-row">
+                                            <div className="input-group">
+                                                <label>Account Type</label>
+                                                <div className="input-wrapper">
+                                                    <i className="fas fa-briefcase"></i>
+                                                    <select
+                                                        name="accountType"
+                                                        value={formData.accountType}
+                                                        onChange={handleChange}
+                                                    >
+                                                        <option value="individual">Individual</option>
+                                                        <option value="small_business">Small Business</option>
+                                                        <option value="enterprise">Enterprise</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="input-group">
+                                            <label>Password</label>
+                                            <div className="input-wrapper">
+                                                <i className="fas fa-lock"></i>
+                                                <input
+                                                    type={showPass ? "text" : "password"}
+                                                    name="password"
+                                                    placeholder="••••••••"
+                                                    value={formData.password}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                                <i
+                                                    className={`fas ${showPass ? 'fa-eye-slash' : 'fa-eye'} toggle-pass`}
+                                                    onClick={() => setShowPass(!showPass)}
+                                                ></i>
+                                            </div>
+                                        </div>
+
+                                        <div className="input-group">
+                                            <label>Confirm Password</label>
+                                            <div className="input-wrapper">
+                                                <i className="fas fa-shield-alt"></i>
+                                                <input
+                                                    type="password"
+                                                    name="confirmPassword"
+                                                    placeholder="••••••••"
+                                                    value={formData.confirmPassword}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" className="btn btn-primary btn-block" disabled={loading}>
+                                            {loading ? 'Registering...' : 'Register Account'} <i className="fas fa-arrow-right"></i>
+                                        </button>
+
+                                    </form>
+
+                                    <div className="card-footer">
+                                        <p>Already have an account? <a href="login.html">Login</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="info-side">
+                                <div className="visual-content">
+                                    <div className="floating-icons">
+                                        <i className="fas fa-chart-line icon-1"></i>
+                                        <i className="fas fa-shield-halved icon-2"></i>
+                                        <i className="fas fa-credit-card icon-3"></i>
+                                    </div>
+                                    <h1>Join <span className="text-cyan">FinTrack</span> Today</h1>
+                                    <p>Start managing your finances smarter with AI-driven analytics and enterprise-grade security.</p>
+                                    <div className="feature-badges">
+                                        <span><i className="fas fa-check-circle"></i> Real-time Tracking</span>
+                                        <span><i className="fas fa-check-circle"></i> Secure Encryption</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </main>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack | Transaction History</title>
+    <link rel="stylesheet" href="transactions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <i class="fas fa-chart-line"></i> FinTrack
+        </div>
+        <div class="nav-links">
+            <a href="#" id="navDashboard">Dashboard</a>
+            <a href="reports.html">Reports</a>
+            <a href="#">Settings</a>
+        </div>
+        <div class="nav-profile">
+            <span class="user-badge">Premium Plan</span>
+            <i class="fas fa-user-circle profile-icon"></i>
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="menu-section">
+                <p class="menu-label">MAIN NAVIGATION</p>
+                <a href="dashboard.html" class="menu-item"><i class="fas fa-th-large"></i> Dashboard</a>
+                <a href="add-expense.html" class="menu-item"><i class="fas fa-plus-circle"></i> Add Expense</a>
+                <a href="#" class="menu-item"><i class="fas fa-wallet"></i> Add Income</a>
+                <a href="transactions.html" class="menu-item active"><i class="fas fa-exchange-alt"></i>
+                    Transactions</a>
+                <a href="reports.html" class="menu-item"><i class="fas fa-file-invoice-dollar"></i> Reports</a>
+            </div>
+
+            <a href="index.html" class="menu-item logout-link"><i class="fas fa-power-off"></i> Logout</a>
+        </aside>
+
+        <main class="main-content">
+
+            <div class="summary-grid">
+                <div class="glass-card stat-card">
+                    <div class="stat-icon-bg purple-bg">
+                        <i class="fas fa-list-ul"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p>Total Transactions</p>
+                        <h3 id="totalTransactions">. . .</h3>
+                    </div>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="stat-icon-bg green-bg">
+                        <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p>Total Income</p>
+                        <h3 id="totalIncome" class="text-success">+$12,450.00</h3>
+                    </div>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="stat-icon-bg red-bg">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                    <div class="stat-info">
+                        <p>Total Expenses</p>
+                        <h3 id="totalExpenses" class="text-danger">-$8,120.50</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-bar glass-card">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search by ID or Title...">
+                </div>
+                <div class="filter-options">
+                    <select class="filter-select">
+                        <option value="all">All Types</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                    <input type="date" class="filter-date">
+                    <button class="btn-filter"><i class="fas fa-filter"></i> Filter</button>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <h2 class="section-title">Transaction History</h2>
+                <div class="glass-card table-container">
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Transaction ID</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionTableBody">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+    <script src="js/navbar.js"></script>
+    <script>
+        function formatDate(dateStr) {
+            return new Date(dateStr).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric'
+            });
+        }
+
+        function formatCurrency(amount) {
+            const options = { style: 'currency', currency: 'USD' };
+            return new Intl.NumberFormat('en-US', options).format(amount);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function formatCurrency(amount) {
+            return '$' + parseFloat(amount).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        }
+
+        function formatDate(dateStr) {
+            return new Date(dateStr).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'short', day: 'numeric'
+            });
+        }
+
+        function getPaymentCol(method) {
+            const icons = {
+                'Cash': 'fa-wallet',
+                'Credit Card': 'fa-credit-card',
+                'Debit Card': 'fa-credit-card',
+                'UPI': 'fa-mobile-alt',
+                'Bank Transfer': 'fa-university',
+            };
+
+            const icon = icons[method] || 'fa-money-bill';  // fallback icon if unknown
+
+            return `<td><i class="fas ${icon}"></i> ${escapeHtml(method) || 'N/A'}</td>`;
+        }
+
+        async function fetchTransactions() {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const transactionTableBody = document.getElementById('transactionTableBody');
+            const totalTransactionsText = document.getElementById('totalTransactions');
+            const totalIncomeText = document.getElementById('totalIncome');
+            const totalExpensesText = document.getElementById('totalExpenses');
+
+            try {
+                const res = await fetch('/api/transactions', {
+                    headers: { 'Authorization': `Bearer ${token}` },
+                });
+
+                const data = await res.json();
+                if (data.length === 0) {
+                    transactionTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="8" style="text-align:center; padding: 2rem;">
+                                No transactions found
+                            </td>
+                        </tr>`;
+                    return;
+                }
+
+                let tableRows = '';
+                const totalTransactions = data.length;
+                let totalIncome = 0;
+                let totalExpenses = 0;
+                data.forEach((row) => {
+                    console.log(row)
+                    const id = row.id.toString().padStart(3, '0');
+                    const title = row.description.split('-')[0].trim();
+                    const category = row.category_name;
+                    const date = formatDate(row.date);
+                    const amount = formatCurrency(row.amount);
+                    const type = row.type;
+                    const paymentMethod = row.payment_method ?? '';
+                    const status = row.status;
+
+                    let amountCol = '';
+                    if (type === 'expense') {
+                        totalExpenses += parseFloat(row.amount);
+                        amountCol = `<td><h3 class="text-danger">-${amount}</h3></td>`;
+                    }
+                    else {
+                        totalIncome += parseFloat(row.amount);
+                        amountCol = `<td><h3 class="text-success">+${amount}</h3></td>`;
+                    }
+
+                    const paymentCol = getPaymentCol(row.payment_method);
+
+                    let statusCol = '';
+                    if (status == 'pending')
+                        statusCol = `<td><span class="status-pill pending">Pending</span></td>`;
+                    else
+                        statusCol = `<td><span class="status-pill completed">Completed</span></td>`;
+
+                    const actionsCol = `
+                    <td class="actions">
+                        <button title="View"><i class="fas fa-eye"></i></button>
+                        <button title="Edit"><i class="fas fa-edit"></i></button>
+                        <button title="Delete" class="delete"><i class="fas fa-trash"></i></button>
+                    </td>
+                    `;
+
+
+                    tableRows += `
+                        <tr>
+                            <td>#TXN${id}</td>
+                            <td>${title}</td>
+                            <td><span class="cat-pill">${category}</span></td>
+                            <td>${date}</td>
+                            ${amountCol}
+                            ${paymentCol}
+                            ${statusCol}
+                            ${actionsCol}
+                        </tr>
+                    `;
+                });
+
+
+                transactionTableBody.innerHTML = tableRows;
+                totalTransactionsText.textContent = totalTransactions;
+                totalIncomeText.textContent = `+${formatCurrency(totalIncome)}`;
+                totalExpensesText.textContent = `-${formatCurrency(totalExpenses)}`;
+            } catch (error) {
+                console.error('Failed to fetch transactions:', error);
+            }
+        }
+
+        fetchTransactions();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack | Add Expense</title>
+    <link rel="stylesheet" href="add-expense.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="nav-logo">
+            <i class="fas fa-chart-line"></i> FinTrack
+        </div>
+        <div class="nav-links">
+            <a href="#" id="navDashboard">Dashboard</a>
+            <a href="#">Reports</a>
+            <a href="#">Settings</a>
+        </div>
+        <div class="nav-profile">
+            <span class="user-badge">Individual User</span>
+            <i class="fas fa-user-circle profile-icon"></i>
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="menu-section">
+                <p class="menu-label">MENU</p>
+                <a href="dashboard.html" class="menu-item"><i class="fas fa-th-large"></i> Dashboard</a>
+                <a href="add-expense.html" class="menu-item active"><i class="fas fa-plus-circle"></i> Add Expense</a>
+                <a href="add-income.html" class="menu-item"><i class="fas fa-wallet"></i> Add Income</a>
+                <a href="transactions.html" class="menu-item"><i class="fas fa-history"></i> Transactions</a>
+                <a href="#" class="menu-item"><i class="fas fa-file-invoice-dollar"></i> Reports</a>
+            </div>
+
+            <a href="index.html" class="menu-item logout-link"><i class="fas fa-power-off"></i> Logout</a>
+        </aside>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h2>Add New Expense</h2>
+                <p>Track your spending to stay within your budget.</p>
+            </div>
+
+            <div class="success-alert" id="successAlert">
+                <i class="fas fa-check-circle"></i> Expense Added Successfully
+            </div>
+
+            <div class="error-alert" id="errorAlert">
+                <i class="fas fa-exclamation-circle"></i> Please fill in all required fields.
+            </div>
+
+            <div class="content-grid">
+                <div class="glass-card form-container">
+                    <form onSubmit="addExpense(event)">
+                        <div class="input-group">
+                            <label>Expense Title</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-tag"></i>
+                                <input type="text" id="expenseTitle" placeholder="e.g. Monthly Grocery" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label>Amount ($)</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    <input type="number" id="expenseAmount" placeholder="0.00" step="0.01" required>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Date</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <input type="date" id="expenseDate" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label>Category</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-list"></i>
+                                    <select id="expenseCategory" required>
+                                        <option value="" disabled selected>Loading categories...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Payment Method</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-credit-card"></i>
+                                    <select id="expensePaymentMethod" required>
+                                        <option value="" disabled selected>Select Method</option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="Debit Card">Debit Card</option>
+                                        <option value="UPI">UPI</option>
+                                        <option value="Bank Transfer">Bank Transfer</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Description</label>
+                            <div class="input-wrapper textarea-wrapper">
+                                <i class="fas fa-align-left"></i>
+                                <textarea id="expenseDescription" rows="4"
+                                    placeholder="Add additional details..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Add Expense</button>
+                            <a href="dashboard.html" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="info-panel">
+                    <div class="glass-card tips-card">
+                        <h3><i class="fas fa-lightbulb"></i> Expense Tips</h3>
+                        <ul class="tips-list">
+                            <li>
+                                <strong>Track Regularly:</strong>
+                                Record daily expenses to avoid missing small transactions.
+                            </li>
+                            <li>
+                                <strong>Set Limits:</strong>
+                                Keep an eye on the "Shopping" category to stay under budget.
+                            </li>
+                            <li>
+                                <strong>Monitor Waste:</strong>
+                                Review "Other" expenses weekly to find potential savings.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/navbar.js"></script>
+    <script>
+        function showAlert(type) {
+            console.log('showAlert called with type:', type);
+            console.log('successDiv:', document.querySelector('.success-alert'));
+            console.log('errorDiv:', document.querySelector('.error-alert'));
+
+            const successDiv = document.querySelector('.success-alert');
+            const errorDiv = document.querySelector('.error-alert');
+
+            // Hide both first
+            successDiv.style.display = 'none';
+            errorDiv.style.display = 'none';
+
+            // Show the relevant one
+            if (type === 'success') {
+                successDiv.style.display = 'block';
+            } else {
+                errorDiv.style.display = 'block';
+                // Auto-hide error after 3 seconds (no redirect for errors)
+                setTimeout(() => {
+                    errorDiv.style.display = 'none';
+                }, 3000);
+            }
+        }
+    </script>
+    <script>
+
+
+        async function loadCategories() {
+            console.log('Fetching categories from the server');
+            const token = localStorage.getItem('token');
+            try {
+                const res = await fetch('/api/categories', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const categories = await res.json();
+                console.log(`Categories loaded: ${categories.length} categories found`, categories);
+
+                const select = document.getElementById('expenseCategory');
+                select.innerHTML = '<option value="" disabled selected>Select Category</option>';
+
+                // Only show expense categories on the add-expense form
+                categories
+                    .filter(c => c.type === 'expense')
+                    .forEach(c => {
+                        const option = document.createElement('option');
+                        option.value = c.id;        // send category id to backend
+                        option.textContent = c.name;
+                        select.appendChild(option);
+                    });
+
+            } catch (err) {
+                console.error('Failed to load categories:', err);
+            }
+        }
+
+        loadCategories();
+
+        async function addExpense(event) {
+            event.preventDefault();
+
+            const token = localStorage.getItem('token');
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const title = document.getElementById('expenseTitle').value;
+            const amount = document.getElementById('expenseAmount').value;
+            const date = document.getElementById('expenseDate').value;
+            const categoryId = document.getElementById('expenseCategory').value;
+            const paymentMethod = document.getElementById('expensePaymentMethod').value;
+            const description = document.getElementById('expenseDescription').value;
+
+            try {
+                const res = await fetch('/api/transactions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        type: 'expense',
+                        amount,
+                        date,
+                        category_id: categoryId,
+                        payment_method: paymentMethod,
+                        description: `${title} - ${description}`,
+
+                    })
+                });
+
+                const data = await res.json();
+                console.log('Add expense response:', data);
+
+                if (res.ok) {
+                    showAlert('success');
+                    setTimeout(() => {
+                        window.location.href = 'dashboard-individual.html';
+                    }, 2000); // wait 2 seconds so user can read it, then redirect
+                } else {
+                    showAlert('error');
+                }
+            } catch (err) {
+                console.error('Error adding expense:', err);
+                showAlert('error'); // show the error div instead of alert popup
+            }
+        }
+    </script>
+</body>
+
+</html>

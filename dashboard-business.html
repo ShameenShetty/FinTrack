@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Dashboard | FinTrack</title>
+    <link rel="stylesheet" href="dashboard-business.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="logo">
+                <i class="fas fa-chart-pie"></i> FinTrack <span>Business</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="dashboard-business.html" class="active">Dashboard</a>
+            <a href="reports.html">Reports</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a href="index.html" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </nav>
+
+    <div class="main-layout">
+        <aside class="sidebar">
+            <ul class="nav-menu">
+                <li class="active"><a href="dashboard-business.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                <li><a href="add-expense.html"><i class="fas fa-file-invoice-dollar"></i> Add Expense</a></li>
+                <li><a href="add-income.html"><i class="fas fa-hand-holding-usd"></i> Add Income</a></li>
+                <li><a href="transactions.html"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+                <li><a href="revenue.html"><i class="fas fa-coins"></i> Revenue</a></li>
+                <li><a href="employees.html"><i class="fas fa-users"></i> Employees</a></li>
+                <li class="logout-item"><a href="index.html"><i class="fas fa-power-off"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <header class="welcome-section">
+                <h1>Business Overview</h1>
+                <p>Monitoring real-time performance for <strong>Nexus Tech Solutions</strong></p>
+            </header>
+
+            <section class="summary-grid">
+                <div class="glass-card stat-card">
+                    <div class="icon-box purple"><i class="fas fa-briefcase"></i></div>
+                    <div class="stat-details">
+                        <span>Total Business Balance</span>
+                        <h2>$84,250.00</h2>
+                    </div>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="icon-box green"><i class="fas fa-arrow-up"></i></div>
+                    <div class="stat-details">
+                        <span>Monthly Revenue</span>
+                        <h2>$12,400.00</h2>
+                    </div>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="icon-box red"><i class="fas fa-arrow-down"></i></div>
+                    <div class="stat-details">
+                        <span>Monthly Expenses</span>
+                        <h2>$5,120.00</h2>
+                    </div>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="icon-box gold"><i class="fas fa-crown"></i></div>
+                    <div class="stat-details">
+                        <span>Net Profit</span>
+                        <h2 class="text-purple">$7,280.00</h2>
+                    </div>
+                </div>
+            </section>
+
+            <div class="dashboard-body">
+                <div class="left-col">
+                    <section class="performance-section glass-card">
+                        <h3>Business Performance</h3>
+                        <div class="perf-grid">
+                            <div class="perf-item">
+                                <p>Total Sales</p>
+                                <h4>$45,000</h4>
+                                <div class="progress-container"><div class="progress-bar" style="width: 75%;"></div></div>
+                            </div>
+                            <div class="perf-item">
+                                <p>Operational Costs</p>
+                                <h4>$12,300</h4>
+                                <div class="progress-container"><div class="progress-bar cost" style="width: 40%;"></div></div>
+                            </div>
+                            <div class="perf-item">
+                                <p>Profit Margin</p>
+                                <h4>24.5%</h4>
+                                <div class="progress-container"><div class="progress-bar profit" style="width: 65%;"></div></div>
+                            </div>
+                            <div class="perf-item">
+                                <p>Revenue Growth</p>
+                                <h4>+12%</h4>
+                                <div class="progress-container"><div class="progress-bar growth" style="width: 85%;"></div></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="analytics-grid">
+                        <div class="glass-card chart-container">
+                            <h3>Revenue Distribution</h3>
+                            <div class="pie-placeholder">
+                                <div class="pie-chart"></div>
+                                <div class="chart-legend">
+                                    <span><i class="fas fa-circle purple-dot"></i> Services</span>
+                                    <span><i class="fas fa-circle blue-dot"></i> Products</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card chart-container">
+                            <h3>Revenue vs Expenses</h3>
+                            <div class="bar-placeholder">
+                                <div class="bar bar-1"></div>
+                                <div class="bar bar-2"></div>
+                                <div class="bar bar-3"></div>
+                                <div class="bar bar-4"></div>
+                                <div class="bar bar-5"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="transactions-section glass-card">
+                        <div class="section-header">
+                            <h3>Recent Business Transactions</h3>
+                            <button class="btn-text">View All</button>
+                        </div>
+                        <table class="business-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Client / Vendor</th>
+                                    <th>Category</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#TXN-9021</td>
+                                    <td>Acme Corp</td>
+                                    <td>Client Payment</td>
+                                    <td>24 May 2026</td>
+                                    <td class="text-green">+$4,500.00</td>
+                                    <td><span class="badge success">Paid</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#TXN-9022</td>
+                                    <td>Skyline Realty</td>
+                                    <td>Office Rent</td>
+                                    <td>22 May 2026</td>
+                                    <td class="text-red">-$2,100.00</td>
+                                    <td><span class="badge warning">Pending</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#TXN-9023</td>
+                                    <td>Internal Payroll</td>
+                                    <td>Employee Salary</td>
+                                    <td>20 May 2026</td>
+                                    <td class="text-red">-$1,800.00</td>
+                                    <td><span class="badge success">Paid</span></td>
+                                </tr>
+                                <tr>
+                                    <td>#TXN-9024</td>
+                                    <td>AWS Services</td>
+                                    <td>Subscription</td>
+                                    <td>18 May 2026</td>
+                                    <td class="text-red">-$450.00</td>
+                                    <td><span class="badge success">Paid</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+
+                <div class="right-col">
+                    <section class="profile-card glass-card">
+                        <div class="profile-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>Alexander Pierce</h3>
+                        <p class="role-badge">Small Business User</p>
+                        <div class="profile-info">
+                            <p><i class="fas fa-envelope"></i> alex@nexus-tech.com</p>
+                            <p><i class="fas fa-id-card"></i> BID: 8820-X91</p>
+                        </div>
+                        <button class="btn-primary">Edit Profile</button>
+                    </section>
+
+                    <section class="employee-summary glass-card">
+                        <h3>Employee Summary</h3>
+                        <div class="emp-stat">
+                            <span>Total Employees</span>
+                            <span class="val">12</span>
+                        </div>
+                        <div class="emp-stat">
+                            <span>Salary Paid</span>
+                            <span class="val">$18,400</span>
+                        </div>
+                        <div class="emp-stat">
+                            <span>Pending Payments</span>
+                            <span class="val text-red">$2,100</span>
+                        </div>
+                        <button class="btn-outline">Manage Payroll</button>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

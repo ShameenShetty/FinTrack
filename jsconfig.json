@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "types": [
+            "node"
+        ],
+        "module": "ESNext",
+        "moduleResolution": "Bundler"
+    },
+    "include": [
+        "server.js",
+        "config/**/*",
+        "routes/**/*",
+        "middleware/**/*"
+    ]
+}

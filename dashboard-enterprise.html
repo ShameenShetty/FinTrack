@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack | Enterprise Dashboard</title>
+    <link rel="stylesheet" href="dashboard-enterprise.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="logo">Fin<span>Track</span></a>
+        </div>
+        <div class="nav-right">
+            <a href="dashboard-enterprise.html" class="active">Dashboard</a>
+            <a href="reports.html">Reports</a>
+            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul class="nav-links">
+                <li class="active"><a href="dashboard-enterprise.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="add-expense.html"><i class="fas fa-minus-circle"></i> Add Expense</a></li>
+                <li><a href="add-income.html"><i class="fas fa-plus-circle"></i> Add Income</a></li>
+                <li><a href="transactions.html"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                <li><a href="reports.html"><i class="fas fa-file-invoice-dollar"></i> Reports</a></li>
+                <div class="sidebar-divider">ENTERPRISE</div>
+                <li><a href="departments.html"><i class="fas fa-building"></i> Departments</a></li>
+                <li><a href="approvals.html"><i class="fas fa-check-double"></i> Approvals</a></li>
+                <li><a href="audit.html"><i class="fas fa-shield-alt"></i> Audit Logs</a></li>
+                <li><a href="users.html"><i class="fas fa-users-cog"></i> User Management</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <header class="content-header">
+                <h1>Enterprise Overview</h1>
+                <p>Welcome back, Admin. Here is your organization's real-time financial status.</p>
+            </header>
+
+            <section class="summary-grid">
+                <div class="glass-card stat-card">
+                    <div class="stat-icon purple"><i class="fas fa-vault"></i></div>
+                    <div class="stat-info">
+                        <span>Org. Balance</span>
+                        <h3>$1,240,500.00</h3>
+                    </div>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="stat-icon green"><i class="fas fa-trending-up"></i></div>
+                    <div class="stat-info">
+                        <span>Total Revenue</span>
+                        <h3>$4,820,000.00</h3>
+                    </div>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="stat-icon red"><i class="fas fa-wallet"></i></div>
+                    <div class="stat-info">
+                        <span>Total Expenses</span>
+                        <h3>$3,150,200.00</h3>
+                    </div>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="stat-icon blue"><i class="fas fa-chart-pie"></i></div>
+                    <div class="stat-info">
+                        <span>Net Profit</span>
+                        <h3>$1,669,800.00</h3>
+                    </div>
+                </div>
+            </section>
+
+            <section class="overview-section">
+                <h2 class="section-title">Organization Financial Overview</h2>
+                <div class="overview-grid">
+                    <div class="glass-card progress-card">
+                        <h4>Budget Utilization</h4>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 72%;"></div>
+                        </div>
+                        <p>72% of annual budget consumed</p>
+                    </div>
+                    <div class="glass-card progress-card">
+                        <h4>Company Growth</h4>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width: 85%; background: #4caf50;"></div>
+                        </div>
+                        <p>15% increase from last Q3</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dept-grid">
+                <div class="glass-card dept-card">
+                    <h4><i class="fas fa-code"></i> IT Department</h4>
+                    <p class="label">Budget Remaining</p>
+                    <h2 class="val">$45,000</h2>
+                </div>
+                <div class="glass-card dept-card">
+                    <h4><i class="fas fa-ad"></i> Marketing</h4>
+                    <p class="label">Revenue Gen.</p>
+                    <h2 class="val">$120,500</h2>
+                </div>
+                <div class="glass-card dept-card">
+                    <h4><i class="fas fa-user-tie"></i> Sales</h4>
+                    <p class="label">Performance</p>
+                    <h2 class="val">+22%</h2>
+                </div>
+                <div class="glass-card dept-card">
+                    <h4><i class="fas fa-users"></i> HR Dept</h4>
+                    <p class="label">Expenses</p>
+                    <h2 class="val">$12,400</h2>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <h2 class="section-title">Pending Approvals</h2>
+                <div class="glass-card table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Req ID</th>
+                                <th>Department</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#EXP-901</td>
+                                <td>IT Services</td>
+                                <td>$4,500.00</td>
+                                <td>2026-03-01</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>
+                                    <button class="btn approve-btn">Approve</button>
+                                    <button class="btn reject-btn">Reject</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#BGT-442</td>
+                                <td>Marketing</td>
+                                <td>$12,000.00</td>
+                                <td>2026-02-28</td>
+                                <td><span class="status approved">Approved</span></td>
+                                <td>—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="analytics-grid">
+                <div class="glass-card chart-placeholder">
+                    <h4>Revenue Distribution</h4>
+                    <div class="pie-placeholder"></div>
+                </div>
+                <div class="glass-card chart-placeholder">
+                    <h4>Expense Comparison</h4>
+                    <div class="bar-placeholder"></div>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <h2 class="section-title">System Audit Log</h2>
+                <div class="glass-card table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Log ID</th>
+                                <th>User</th>
+                                <th>Action</th>
+                                <th>Module</th>
+                                <th>Date/Time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>L-5521</td>
+                                <td>admin_master</td>
+                                <td>Policy Update</td>
+                                <td>Security</td>
+                                <td>Mar 02, 10:45 AM</td>
+                            </tr>
+                            <tr>
+                                <td>L-5520</td>
+                                <td>hr_manager</td>
+                                <td>Add Employee</td>
+                                <td>HR Module</td>
+                                <td>Mar 02, 09:12 AM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <aside class="right-panel">
+            <div class="glass-card profile-card">
+                <div class="profile-img">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3>Alex Sterling</h3>
+                <p class="role">Enterprise Admin</p>
+                <div class="profile-details">
+                    <div class="detail-item">
+                        <span>Email:</span>
+                        <p>a.sterling@corporate.com</p>
+                    </div>
+                    <div class="detail-item">
+                        <span>Enterprise ID:</span>
+                        <p>FT-2026-ENT-001</p>
+                    </div>
+                </div>
+                <button class="edit-profile-btn">Edit Profile</button>
+            </div>
+        </aside>
+    </div>
+
+</body>
+</html>

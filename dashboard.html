@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack | Professional Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <i class="fas fa-chart-line"></i> FinTrack
+        </a>
+        <div class="nav-links">
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="#">Reports</a>
+            <a href="#">Settings</a>
+        </div>
+        <div class="nav-profile">
+            <span class="user-badge">Enterprise Admin</span>
+            <i class="fas fa-user-circle profile-icon"></i>
+            <a href="index.html" class="logout-btn"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="menu-section">
+                <p class="menu-label">CORE FEATURES</p>
+                <a href="dashboard.html" class="menu-item active"><i class="fas fa-th-large"></i> Dashboard</a>
+                <a href="add-expense.html" class="menu-item"><i class="fas fa-plus-circle"></i> Add Expense</a>
+                <a href="add-income.html" class="menu-item"><i class="fas fa-wallet"></i> Add Income</a>
+                <a href="transactions.html" class="menu-item"><i class="fas fa-history"></i> Transactions</a>
+                <a href="#" class="menu-item"><i class="fas fa-file-invoice-dollar"></i> Reports</a>
+            </div>
+
+            <div class="menu-section" id="sidebarBusiness">
+                <p class="menu-label">SMALL BUSINESS</p>
+                <a href="#" class="menu-item"><i class="fas fa-chart-bar"></i> Revenue</a>
+                <a href="#" class="menu-item"><i class="fas fa-users"></i> Employees</a>
+            </div>
+
+            <div class="menu-section" id="sidebarEnterprise">
+                <p class="menu-label">ENTERPRISE</p>
+                <a href="#" class="menu-item"><i class="fas fa-sitemap"></i> Departments</a>
+                <a href="#" class="menu-item"><i class="fas fa-check-double"></i> Approvals</a>
+                <a href="#" class="menu-item"><i class="fas fa-shield-alt"></i> Audit Logs</a>
+            </div>
+
+            <a href="index.html" class="menu-item logout-link"><i class="fas fa-power-off"></i> Logout</a>
+        </aside>
+
+        <main class="main-content">
+
+            <div class="summary-grid">
+                <div class="glass-card stat-card">
+                    <div class="stat-info">
+                        <p>Total Balance</p>
+                        <h3>$124,500.00</h3>
+                    </div>
+                    <i class="fas fa-vault icon-purple"></i>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="stat-info">
+                        <p>Total Income</p>
+                        <h3 class="text-success">+$45,200</h3>
+                    </div>
+                    <i class="fas fa-arrow-trend-up icon-purple"></i>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="stat-info">
+                        <p>Total Expenses</p>
+                        <h3 class="text-danger">-$12,840</h3>
+                    </div>
+                    <i class="fas fa-arrow-trend-down icon-purple"></i>
+                </div>
+                <div class="glass-card stat-card">
+                    <div class="stat-info">
+                        <p>Budget Left</p>
+                        <h3>72%</h3>
+                    </div>
+                    <div class="progress-circle"></div>
+                </div>
+            </div>
+
+            <div class="module-row">
+                <section class="module-section">
+                    <h2 class="section-title"><i class="fas fa-user"></i> Individual Finance</h2>
+                    <div class="glass-card">
+                        <div class="sub-stat">
+                            <span>Personal Spending</span>
+                            <span>$2,400</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%;"></div>
+                        </div>
+                        <div class="sub-stat" style="margin-top: 15px;">
+                            <span>Savings Goal</span>
+                            <span>85% achieved</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-section">
+                    <h2 class="section-title"><i class="fas fa-store"></i> Business Finance</h2>
+                    <div class="glass-card">
+                        <div class="business-flex">
+                            <div>
+                                <p class="small-label">Projected Revenue</p>
+                                <h4>$89,000</h4>
+                            </div>
+                            <div>
+                                <p class="small-label">Staff Payroll</p>
+                                <h4>$12,500</h4>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section class="enterprise-section">
+                <h2 class="section-title"><i class="fas fa-building"></i> Enterprise Finance</h2>
+                <div class="enterprise-grid">
+                    <div class="glass-card ent-mini-card">
+                        <i class="fas fa-network-wired"></i>
+                        <p>Departments</p>
+                        <h4>12 Active</h4>
+                    </div>
+                    <div class="glass-card ent-mini-card">
+                        <i class="fas fa-hourglass-half"></i>
+                        <p>Pending Approvals</p>
+                        <h4>08 Requests</h4>
+                    </div>
+                    <div class="glass-card ent-mini-card">
+                        <i class="fas fa-clipboard-check"></i>
+                        <p>Audit Status</p>
+                        <h4 class="text-success">Verified</h4>
+                    </div>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <h2 class="section-title">Recent Transactions</h2>
+                <div class="glass-card table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Entity</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Individual</td>
+                                <td>Grocery Store</td>
+                                <td>Oct 24, 2023</td>
+                                <td class="text-danger">-$120.00</td>
+                                <td><span class="status-pill completed">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>Business</td>
+                                <td>Cloud Hosting</td>
+                                <td>Oct 23, 2023</td>
+                                <td class="text-danger">-$450.00</td>
+                                <td><span class="status-pill pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>Enterprise</td>
+                                <td>Q4 Marketing</td>
+                                <td>Oct 22, 2023</td>
+                                <td class="text-success">+$15,000.00</td>
+                                <td><span class="status-pill completed">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <aside class="profile-panel">
+            <div class="glass-card profile-info">
+                <div class="profile-img-container">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=7c83ff&color=fff" alt="User">
+                </div>
+                <h3><span id="fullUserName"></span></h3>
+                <p class="account-type" id="userAccountType"></p>
+                <hr class="divider">
+                <div class="user-details">
+                    <div class="detail-item">
+                        <i class="fas fa-envelope"></i>
+                        <span id="userEmail">admin@fintrack.com</span>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-id-badge"></i>
+                        <span id="userId"></span>
+                    </div>
+                </div>
+                <button class="edit-profile-btn">Edit Profile</button>
+            </div>
+        </aside>
+    </div>
+    <script>
+
+        function initPage() {
+            const token = localStorage.getItem('token');
+            const accountType = localStorage.getItem('accountType');
+            const userName = localStorage.getItem('fullName') ?? 'N/A';
+            const email = localStorage.getItem('email') ?? 'N/A';
+            const userId = localStorage.getItem('userId') ?? 'N/A';
+
+            if (!token) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            document.getElementById('userAccountType').textContent = accountType ?? 'Individual';
+            document.getElementById('userEmail').textContent = email;
+            document.getElementById('userId').textContent = `UID: ${userId}`;
+
+            if (accountType === 'small_business') {
+                document.getElementById('sidebarBusiness').style.display = 'block';
+            } else if (accountType === 'enterprise') {
+                document.getElementById('sidebarBusiness').style.display = 'block';
+                document.getElementById('sidebarEnterprise').style.display = 'block';
+            }
+
+            document.getElementById('fullUserName').textContent = userName
+        }
+
+        initPage();
+    </script>
+</body>
+
+</html>
